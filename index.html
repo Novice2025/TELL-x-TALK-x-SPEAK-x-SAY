@@ -1,0 +1,1096 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <title>Tell · Talk · Speak · Say – NEXTATION Super Lesson</title>
+  <style>
+    :root{
+      /* Core backgrounds */
+      --bg-main:#02030b;
+      --bg-gradient:radial-gradient(circle at top,#1c1f3b 0%,#050716 45%,#02030b 100%);
+      /* Surfaces / Cards */
+      --card-bg:rgba(15,18,40,0.92);
+      --card-soft-bg:rgba(18,21,50,0.88);
+      /* Neon accents */
+      --accent-cyan:#4ef2ff;
+      --accent-pink:#ff2f92;
+      --accent-green:#4dff9b;
+      --accent-yellow:#ffe25f;
+      --accent-purple:#aa5dff;
+      /* Text and borders */
+      --muted:rgba(255,255,255,0.65);
+      --border-glow:rgba(120,120,255,0.45);
+      /* Shadows */
+      --shadow-strong:0 0 36px rgba(130,80,255,0.6);
+      --shadow-soft:0 0 20px rgba(0,0,0,0.65);
+      /* Radii and transitions */
+      --radius-lg:22px;
+      --radius-md:16px;
+      --radius-sm:10px;
+      --transition-fast:0.18s ease-out;
+      --transition-med:0.28s ease-out;
+    }
+
+    *{box-sizing:border-box;margin:0;padding:0;}
+    body{
+      font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial;
+      background:var(--bg-gradient);
+      color:#fff;
+      min-height:100vh;
+      padding:24px;
+      display:flex;
+      justify-content:center;
+    }
+    .app{
+      max-width:1100px;
+      width:100%;
+    }
+
+    /* HEADER */
+    .neon-header{
+      position:relative;
+      padding:18px 22px 14px;
+      border-radius:var(--radius-lg);
+      background:rgba(3,5,20,0.9);
+      box-shadow:var(--shadow-soft);
+      border:1px solid var(--border-glow);
+      margin-bottom:20px;
+      overflow:hidden;
+    }
+    .neon-header::before{
+      content:"";
+      position:absolute;
+      inset:-1px;
+      background:linear-gradient(90deg,#00f5ff,#ff2f92,#ffe25f,#4dff9b);
+      opacity:0.5;
+      mix-blend-mode:screen;
+      pointer-events:none;
+      z-index:-1;
+    }
+    .header-main{
+      display:flex;
+      align-items:center;
+      gap:18px;
+    }
+    .teacher-orb{
+      width:64px;
+      height:64px;
+      border-radius:50%;
+      background:radial-gradient(circle,#ffffff 0%,#00fff0 35%,#ff2f92 70%,#02030b 100%);
+      box-shadow:0 0 24px rgba(0,255,255,0.7),0 0 32px rgba(255,0,160,0.55);
+      flex-shrink:0;
+    }
+    .brand-title{
+      font-size:1.4rem;
+      background:linear-gradient(90deg,#4ef2ff,#ff2f92);
+      -webkit-background-clip:text;
+      background-clip:text;
+      color:transparent;
+      font-weight:700;
+      letter-spacing:0.06em;
+      text-transform:uppercase;
+    }
+    .brand-sub{
+      color:var(--muted);
+      font-size:0.9rem;
+      margin-top:2px;
+    }
+    .lesson-title{
+      margin-top:10px;
+      font-size:1.25rem;
+      color:var(--accent-cyan);
+      text-shadow:0 0 12px rgba(78,242,255,0.5);
+    }
+    .controls-row{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin-top:10px;
+      font-size:0.9rem;
+    }
+    .small-btn{
+      padding:6px 12px;
+      border-radius:999px;
+      border:1px dashed rgba(255,255,255,0.35);
+      background:transparent;
+      color:#fff;
+      cursor:pointer;
+      font-size:0.8rem;
+      display:inline-flex;
+      align-items:center;
+      gap:6px;
+      transition:transform var(--transition-fast),box-shadow var(--transition-fast),border-color var(--transition-fast),background var(--transition-fast);
+    }
+    .small-btn:hover{
+      transform:scale(1.03);
+      border-color:var(--accent-cyan);
+      box-shadow:0 0 16px rgba(78,242,255,0.5);
+      background:rgba(4,10,40,0.9);
+    }
+
+    /* TABS */
+    .tabs{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin:18px 0 16px;
+    }
+    .tab{
+      position:relative;
+      padding:9px 14px;
+      border-radius:var(--radius-md);
+      background:radial-gradient(circle at top,rgba(255,255,255,0.09),rgba(7,10,28,0.96));
+      border:1px solid rgba(130,140,200,0.4);
+      color:#fff;
+      font-size:0.9rem;
+      cursor:pointer;
+      transition:all var(--transition-fast);
+    }
+    .tab span.icon{margin-right:6px;}
+    .tab:hover{
+      border-color:rgba(120,120,255,0.6);
+      box-shadow:0 0 20px rgba(120,120,255,0.35);
+    }
+    .tab.active{
+      background:radial-gradient(circle at top,rgba(255,255,255,0.15),rgba(21,13,51,0.98));
+      border-color:rgba(103,255,196,0.9);
+      box-shadow:0 0 24px rgba(79,255,204,0.55);
+    }
+    .tab.completed::after{
+      content:"✓";
+      position:absolute;
+      top:-6px;
+      right:-6px;
+      width:18px;
+      height:18px;
+      border-radius:50%;
+      background:#4dff9b;
+      color:#02030b;
+      font-size:0.7rem;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      box-shadow:0 0 10px rgba(77,255,179,0.9);
+    }
+
+    /* CARD */
+    .card{
+      position:relative;
+      border-radius:var(--radius-lg);
+      background:linear-gradient(135deg,rgba(13,16,40,0.98),rgba(6,8,26,0.98));
+      padding:20px 22px 22px;
+      border:1px solid rgba(120,120,255,0.32);
+      box-shadow:var(--shadow-soft);
+      overflow:hidden;
+      min-height:260px;
+    }
+    .card::before{
+      content:"";
+      position:absolute;
+      top:-40%;
+      left:-20%;
+      width:280px;
+      height:280px;
+      background:radial-gradient(circle at top left,rgba(87,57,255,0.35),transparent 58%);
+      pointer-events:none;
+    }
+    .card-inner{
+      position:relative;
+      z-index:1;
+    }
+    h2.section-title{
+      font-size:1.1rem;
+      color:var(--accent-cyan);
+      margin-bottom:4px;
+    }
+    .section-sub{
+      font-size:0.9rem;
+      color:var(--muted);
+      margin-bottom:12px;
+      line-height:1.6;
+    }
+    .highlight-expression{
+      display:inline-flex;
+      flex-wrap:wrap;
+      align-items:center;
+      gap:8px;
+      padding:8px 12px;
+      border-radius:999px;
+      background:linear-gradient(120deg,#ffe25f,#ff2f92,#4ef2ff);
+      color:#050618;
+      font-weight:700;
+      margin:8px 0 12px;
+    }
+    .pill-tag{
+      display:inline-flex;
+      align-items:center;
+      gap:6px;
+      padding:5px 10px;
+      border-radius:999px;
+      background:linear-gradient(90deg,rgba(0,0,0,0.75),rgba(28,32,80,0.95));
+      border:1px solid rgba(78,242,255,0.6);
+      font-size:0.8rem;
+      color:#fff;
+    }
+    .play-btn{
+      padding:4px 10px;
+      border-radius:999px;
+      border:1px dashed rgba(255,255,255,0.35);
+      background:transparent;
+      color:#fff;
+      font-size:0.75rem;
+      cursor:pointer;
+      display:inline-flex;
+      align-items:center;
+      gap:5px;
+      margin-left:6px;
+      transition:all var(--transition-fast);
+    }
+    .play-btn:hover{
+      border-color:var(--accent-cyan);
+      box-shadow:0 0 14px rgba(78,242,255,0.5);
+      transform:scale(1.03);
+    }
+
+    .two-cols{
+      display:grid;
+      grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);
+      gap:18px;
+      margin-top:12px;
+    }
+    .sub-block{
+      background:var(--card-soft-bg);
+      border-radius:var(--radius-md);
+      padding:12px 14px;
+      border:1px solid rgba(178,75,243,0.45);
+      box-shadow:0 0 18px rgba(0,0,0,0.85);
+      font-size:0.9rem;
+      line-height:1.6;
+    }
+    .sub-title{
+      font-weight:600;
+      color:var(--accent-yellow);
+      margin-bottom:6px;
+    }
+    .bad{
+      color:#ff8fa3;
+      font-weight:600;
+    }
+    .good{
+      color:#4dff9b;
+      font-weight:600;
+    }
+    .example-line{
+      margin-bottom:4px;
+    }
+    .example-en{
+      color:#fff;
+    }
+    .example-pt{
+      color:var(--muted);
+      font-size:0.86rem;
+    }
+    .label{
+      font-size:0.75rem;
+      text-transform:uppercase;
+      letter-spacing:0.08em;
+      color:var(--muted);
+      margin-bottom:4px;
+    }
+
+    /* SITUATIONS TAB */
+    .situations-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+      gap:14px;
+      margin-top:10px;
+    }
+    .situation-card{
+      background:radial-gradient(circle at top,rgba(255,255,255,0.06),rgba(3,5,24,0.96));
+      border-radius:var(--radius-md);
+      border:1px solid rgba(178,75,243,0.45);
+      padding:10px 12px;
+      box-shadow:0 0 18px rgba(0,0,0,0.85);
+      font-size:0.9rem;
+      line-height:1.5;
+      transition:border-color var(--transition-fast),box-shadow var(--transition-fast),transform var(--transition-fast);
+      cursor:pointer;
+    }
+    .situation-card:hover{
+      border-color:rgba(255,160,255,0.9);
+      box-shadow:0 0 20px rgba(255,160,255,0.9);
+      transform:translateY(-2px);
+    }
+    .sit-context{
+      color:var(--muted);
+      font-size:0.8rem;
+      margin-top:3px;
+    }
+
+    /* WRITE TAB */
+    .write-prompt{
+      font-size:0.95rem;
+      margin-bottom:8px;
+    }
+    .write-prompt strong{
+      border-bottom:2px solid var(--accent-pink);
+    }
+    textarea{
+      width:100%;
+      min-height:110px;
+      background:rgba(2,6,32,0.95);
+      border-radius:var(--radius-md);
+      border:1px solid rgba(178,75,243,0.45);
+      color:#fff;
+      padding:10px 12px;
+      resize:vertical;
+      font-family:inherit;
+      font-size:0.9rem;
+      line-height:1.6;
+      outline:none;
+      transition:border-color var(--transition-fast),box-shadow var(--transition-fast);
+    }
+    textarea::placeholder{
+      color:rgba(255,255,255,0.3);
+    }
+    textarea:focus{
+      border-color:rgba(178,75,243,0.8);
+      box-shadow:0 0 14px rgba(178,75,243,0.8);
+    }
+    .char-counter{
+      text-align:right;
+      font-size:0.75rem;
+      color:rgba(255,255,255,0.5);
+      margin-top:4px;
+    }
+
+    /* PRACTICE TAB */
+    .practice-row{
+      display:flex;
+      flex-wrap:wrap;
+      gap:14px;
+      align-items:flex-start;
+      margin-top:8px;
+      font-size:0.9rem;
+    }
+    .record-btn{
+      padding:10px 18px;
+      border-radius:999px;
+      border:none;
+      cursor:pointer;
+      color:#fff;
+      font-weight:600;
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      background:linear-gradient(135deg,#ff2f2f,#ff7b7b);
+      transition:transform var(--transition-fast),box-shadow var(--transition-fast),background var(--transition-fast);
+      box-shadow:0 0 18px rgba(255,47,47,0.8);
+    }
+    .record-btn.recording{
+      background:linear-gradient(135deg,#ff0000,#ff4444);
+      animation:pulse 1s infinite;
+    }
+    @keyframes pulse{
+      0%{transform:scale(1);}
+      50%{transform:scale(1.05);}
+      100%{transform:scale(1);}
+    }
+    .audio-wrapper{
+      flex:1;
+      min-width:220px;
+      background:rgba(5,10,32,0.92);
+      border-radius:var(--radius-md);
+      border:1px solid rgba(78,242,255,0.45);
+      padding:10px 12px;
+      box-shadow:0 0 16px rgba(0,0,0,0.8);
+    }
+    .no-audio{
+      border:1px dashed rgba(255,255,255,0.35);
+      color:rgba(255,255,255,0.75);
+      padding:6px 8px;
+      border-radius:var(--radius-sm);
+      font-size:0.85rem;
+    }
+    .delete-btn{
+      margin-top:6px;
+      padding:4px 8px;
+      border-radius:var(--radius-sm);
+      border:none;
+      background:#c62828;
+      color:#fff;
+      font-size:0.8rem;
+      cursor:pointer;
+      transition:background var(--transition-fast),transform var(--transition-fast);
+    }
+    .delete-btn:hover{
+      background:#e53935;
+      transform:translateY(-1px);
+    }
+
+    /* FOOTER / NAVIGATION */
+    .footer-nav{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      margin-top:14px;
+    }
+    .primary-btn{
+      padding:9px 18px;
+      border-radius:999px;
+      border:none;
+      background:linear-gradient(135deg,#ff2f92,#f89b29,#4ef2ff);
+      color:#050618;
+      font-weight:600;
+      cursor:pointer;
+      box-shadow:0 0 25px rgba(255,47,146,0.9);
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      transition:transform var(--transition-fast),box-shadow var(--transition-fast);
+    }
+    .primary-btn:hover{
+      transform:scale(1.03);
+      box-shadow:0 0 32px rgba(255,47,146,1);
+    }
+    .secondary-btn{
+      padding:8px 14px;
+      border-radius:999px;
+      border:none;
+      background:linear-gradient(135deg,#191d3b,#13162b);
+      color:rgba(255,255,255,0.85);
+      cursor:pointer;
+      display:inline-flex;
+      align-items:center;
+      gap:6px;
+      transition:transform var(--transition-fast),box-shadow var(--transition-fast);
+    }
+    .secondary-btn:hover{
+      transform:scale(1.02);
+      box-shadow:0 0 18px rgba(0,0,0,0.7);
+    }
+    .export-bar{
+      display:flex;
+      flex-wrap:wrap;
+      gap:8px;
+      margin-top:6px;
+      font-size:0.8rem;
+    }
+    .footer-meta{
+      margin-top:14px;
+      padding-top:10px;
+      border-top:1px solid rgba(255,255,255,0.12);
+      font-size:0.8rem;
+      color:rgba(255,255,255,0.55);
+    }
+    .footer-meta span.brand{
+      color:#4ef2ff;
+    }
+
+    /* PRINT (PDF) */
+    @media print{
+      body{
+        background:#fff;
+        padding:0;
+      }
+      .neon-header,
+      .tabs,
+      .controls-row,
+      .footer-nav,
+      .footer-meta,
+      .export-bar{
+        display:none !important;
+      }
+      .card{
+        box-shadow:none;
+        border:1px solid #ccc;
+        border-radius:0;
+      }
+      .card::before{display:none;}
+      .card-inner{
+        color:#000;
+      }
+    }
+  </style>
+</head>
+<body>
+<div class="app">
+  <header class="neon-header">
+    <div class="header-main">
+      <div class="teacher-orb"></div>
+      <div>
+        <div class="brand-title">Daby Blockchain Method</div>
+        <div class="brand-sub">
+          Aula mista inglês + português – TELL · TALK · SPEAK · SAY explicados no “cérebro BR”. 🧠💬
+        </div>
+        <div class="lesson-title">
+          TELL x TALK x SPEAK x SAY – a aula que acaba com a confusão 😅
+        </div>
+      </div>
+    </div>
+    <div class="controls-row">
+      <button class="small-btn" onclick="copyToSpreadsheet()">
+        📋 Copiar conteúdo para planilha
+      </button>
+      <button class="small-btn" onclick="window.print()">
+        📄 Exportar em PDF (somente a lição)
+      </button>
+    </div>
+  </header>
+
+  <!-- TABS -->
+  <nav class="tabs">
+    <button class="tab active" data-tab="overview" onclick="showTab('overview')">
+      <span class="icon">💡</span>Resumo rápido
+    </button>
+    <button class="tab" data-tab="why" onclick="showTab('why')">
+      <span class="icon">🧠</span>Cérebro brasileiro
+    </button>
+    <button class="tab" data-tab="patterns" onclick="showTab('patterns')">
+      <span class="icon">🧩</span>Regras simples
+    </button>
+    <button class="tab" data-tab="situations" onclick="showTab('situations')">
+      <span class="icon">🎬</span>Situações reais
+    </button>
+    <button class="tab" data-tab="write" onclick="showTab('write')">
+      <span class="icon">✍️</span>Você escreve
+    </button>
+    <button class="tab" data-tab="practice" onclick="showTab('practice')">
+      <span class="icon">🎙️</span>Treino de fala
+    </button>
+  </nav>
+
+  <main class="card">
+    <!-- OVERVIEW -->
+    <div class="card-inner" id="tab-overview">
+      <h2 class="section-title">1. Resumo rápido – o mapa dos 4 verbos 💡</h2>
+      <p class="section-sub">
+        Em português a gente mistura tudo: falar, dizer, contar, conversar.  
+        Em inglês, o cérebro precisa separar em 4 caixinhas MUITO claras:
+      </p>
+
+      <div class="highlight-expression">
+        SAY = dizer (palavras) • TELL = contar / informar alguém • SPEAK = falar (idioma / formal) • TALK = conversar (bater papo)
+      </div>
+
+      <div class="pill-tag">
+        🔊 Pronúncia base:
+        <button class="play-btn" onclick="speak('say, tell, speak, talk')">
+          say / tell / speak / talk
+        </button>
+      </div>
+
+      <!-- BLOCO IMPACTANTE: DIFERENÇA DOS 4 VERBOS -->
+      <div class="sub-block" style="margin-top:14px;border-color:rgba(78,242,255,0.7);">
+        <div class="sub-title">1.1. A metáfora dos 4 verbos – imagem forte pro cérebro BR 🎯</div>
+        <p class="section-sub" style="margin-bottom:8px;">
+          Imagine uma cena em câmera lenta, 4 momentos diferentes que o seu cérebro vai colar pra sempre:
+        </p>
+
+        <ol style="font-size:0.9rem;line-height:1.7;margin-left:18px;">
+          <li style="margin-bottom:6px;">
+            <strong style="color:#4ef2ff;">SPEAK = abrir a boca e soltar som que vira palavras</strong><br>
+            👉 Pense em <u>ar saindo da boca</u>, vibração da garganta, o som viajando pelo ar até a pessoa.<br>
+            “I <span class="good">speak</span> English.” → Eu <u>abro a boca</u> e produzo inglês (idioma / fala formal).
+          </li>
+
+          <li style="margin-bottom:6px;">
+            <strong style="color:#4ef2ff;">TELL = colocar informação dentro da cabeça de alguém</strong><br>
+            👉 Visualiza <u>um pendrive</u> indo da sua mão para a cabeça da pessoa.<br>
+            “I <span class="good">tell</span> you the truth.” → Eu <u>instalo informação</u> na sua mente.<br>
+            Fórmula mental que você pode sempre repetir para os alunos:  
+            <strong>TELL = informar alguém</strong> → tem SEMPRE uma pessoa recebendo: <strong>tell me / tell him / tell her / tell them</strong>.
+          </li>
+
+          <li style="margin-bottom:6px;">
+            <strong style="color:#ff2f92;">SAY = a frase que sai da boca (balão de HQ)</strong><br>
+            👉 O foco é <u>na frase em si</u>, como se você visse as palavras escritas num balão de quadrinhos.<br>
+            “I didn’t <span class="good">say</span> that.” → Eu não disse <u>essa frase</u>.
+          </li>
+
+          <li>
+            <strong style="color:#ff2f92;">TALK = trocar ideia, ping-pong de conversa</strong><br>
+            👉 Imagina uma bolinha de ping-pong indo e voltando entre duas pessoas.<br>
+            “We <span class="good">talk</span> a lot.” → A gente fica conversando, trocando ideia.
+          </li>
+        </ol>
+
+        <p style="margin-top:10px;font-size:0.9rem;line-height:1.6;">
+          Resumão visual (cola na mente):<br>
+          • <strong>SPEAK</strong> → <em>abrir a boca e deixar o som viajar</em> (idioma, fala mais formal, apresentações).<br>
+          • <strong>TELL</strong> → <em>pendrive de informação</em> entrando na cabeça de alguém (informar, contar algo a alguém).<br>
+          • <strong>SAY</strong> → <em>balão de HQ</em> com a frase escrita (o que foi dito).<br>
+          • <strong>TALK</strong> → <em>ping-pong</em> de ideias (conversa, bate-papo).
+        </p>
+
+        <div class="pill-tag" style="margin-top:10px;">
+          🔊 Treino rápido:
+          <button class="play-btn" onclick="speak('I speak English. I tell you the truth. I did not say that. We need to talk.')">
+            Ouvir & visualizar as 4 imagens
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- WHY TAB -->
+    <div class="card-inner" id="tab-why" style="display:none;">
+      <h2 class="section-title">2. Por que brasileiro confunde tanto esses 4 verbos? 🧠</h2>
+      <p class="section-sub">
+        Português joga tudo em “falar / dizer / contar / conversar”. Em inglês, você precisa decidir em milésimos de segundo:
+        vou focar na <strong>boca</strong>, na <strong>informação</strong>, na <strong>frase</strong> ou na <strong>conversa</strong>?
+      </p>
+
+      <div class="sub-block">
+        <div class="sub-title">2.1. Tradução mental que atrapalha</div>
+        <p class="example-line">
+          • “Falar inglês” → muita gente traduz como <span class="bad">to talk English</span>, mas é <span class="good">to speak English</span>.
+        </p>
+        <p class="example-line">
+          • “Me conta” → a tentação é usar <span class="bad">say me</span>, mas o inglês real é <span class="good">tell me</span>.
+        </p>
+        <p class="example-line">
+          • “Ele disse que...” → dá vontade de usar <span class="bad">he told that</span>, mas é <span class="good">he said that</span>.
+        </p>
+        <p style="margin-top:6px;">
+          A aula inteira aqui é pra quebrar esses atalhos errados e instalar novos atalhos visuais:
+          boca (speak), pendrive (tell), balão de HQ (say) e ping-pong (talk).
+        </p>
+      </div>
+    </div>
+
+    <!-- PATTERNS TAB -->
+    <div class="card-inner" id="tab-patterns" style="display:none;">
+      <h2 class="section-title">3. Regras simples – fala pro aluno repetir 💬</h2>
+      <p class="section-sub">
+        Use essas frases-manchas de texto exatamente assim com seus alunos. Elas viram script mental.
+      </p>
+
+      <div class="two-cols">
+        <div class="sub-block">
+          <div class="sub-title">3.1. SPEAK – abrir a boca e deixar o som viajar 🌬️</div>
+          <p class="example-line">
+            Pense: <strong>SPEAK = boca + som + idioma / formalidade</strong>.
+          </p>
+          <p class="example-line">
+            ✅ <span class="good">I speak English at work.</span><br>
+            <span class="example-pt">Eu abro a boca e produzo inglês no trabalho.</span>
+          </p>
+          <p class="example-line">
+            ✅ <span class="good">Could I speak to the manager?</span><br>
+            <span class="example-pt">Posso falar (formalmente) com o gerente?</span>
+          </p>
+          <p style="margin-top:4px;">
+            Regra que você pode repetir sempre:  
+            • Idioma? → <strong>SPEAK</strong>.  
+            • Reunião, entrevista, chefe? → quase sempre <strong>SPEAK</strong>.
+          </p>
+        </div>
+
+        <div class="sub-block">
+          <div class="sub-title">3.2. TELL – informar alguém, pendrive de informação 💾</div>
+          <p class="example-line">
+            Pense: <strong>TELL = passar informação para uma pessoa específica</>.
+          </p>
+          <p class="example-line">
+            ✅ <span class="good">Tell me the truth.</span><br>
+            <span class="example-pt">Me conta a verdade. (pendrive → minha cabeça)</span>
+          </p>
+          <p class="example-line">
+            ✅ <span class="good">My boss told me to call you.</span><br>
+            <span class="example-pt">Meu chefe me informou / disse para te ligar.</span>
+          </p>
+          <p style="margin-top:4px;">
+            Fórmula pra decorar:  
+            <strong>TELL + pessoa + coisa</strong> → tell <u>me</u> the news, tell <u>him</u> the truth, tell <u>them</u> the plan.
+          </p>
+        </div>
+      </div>
+
+      <div class="two-cols" style="margin-top:14px;">
+        <div class="sub-block">
+          <div class="sub-title">3.3. SAY – a frase que aparece no balão de HQ 💬</div>
+          <p class="example-line">
+            Foco na frase, não na pessoa:
+          </p>
+          <p class="example-line">
+            ✅ <span class="good">What did you say?</span> → O que você disse? (qual frase?)<br>
+            ✅ <span class="good">I didn’t say that.</span> → Eu não disse isso.
+          </p>
+          <p style="margin-top:4px;">
+            Regra prática:  
+            • “Dizer algo” em geral → <strong>SAY something</strong>.  
+            • “Dizer que…” → <strong>SAY that</strong> + frase.
+          </p>
+        </div>
+
+        <div class="sub-block">
+          <div class="sub-title">3.4. TALK – ping-pong de conversa 🏓</div>
+          <p class="example-line">
+            Pense: <strong>TALK = conversar, bater papo, trocar ideia</strong>.
+          </p>
+          <p class="example-line">
+            ✅ <span class="good">We need to talk.</span> → A gente precisa conversar.<br>
+            ✅ <span class="good">Can we talk about it later?</span> → A gente pode conversar sobre isso depois?
+          </p>
+          <p style="margin-top:4px;">
+            Coloque isso na cabeça do aluno:  
+            • Conversa/DR? → <strong>TALK</strong>.  
+            • “Sobre” algo → <strong>talk about</strong> something.
+          </p>
+        </div>
+      </div>
+
+      <div class="sub-block" style="margin-top:14px;">
+        <div class="sub-title">3.5. Mantra final – explique como se fosse pra um amigo</div>
+        <p class="example-en">
+          “I <span class="good">say</span> something.” → eu digo alguma coisa.<br>
+          “I <span class="good">tell</span> you something.” → eu te conto alguma coisa (pendrive pra sua cabeça).<br>
+          “I <span class="good">speak</span> English.” → eu falo inglês (idioma / abrir a boca).<br>
+          “I <span class="good">talk</span> to my friends.” → eu converso com meus amigos (ping-pong).
+        </p>
+        <button class="play-btn" onclick="speak('I say something. I tell you something. I speak English. I talk to my friends.')">
+          🔊 Ouvir e repetir
+        </button>
+      </div>
+    </div>
+
+    <!-- SITUATIONS -->
+    <div class="card-inner" id="tab-situations" style="display:none;">
+      <h2 class="section-title">4. Situações reais – WhatsApp, trabalho, DR, família 🎬</h2>
+      <p class="section-sub">
+        Clique nos cartões, ouça em inglês, repita em voz alta. Veja a explicação em português logo abaixo.
+      </p>
+
+      <div class="situations-grid">
+        <div class="situation-card" onclick="speak('Can you tell me what happened?')">
+          <strong>1. Amigo curioso depois de um problema 😮</strong>
+          <div class="example-en">
+            “Can you <span class='good'>tell me</span> what happened?”
+          </div>
+          <div class="example-pt">“Você pode me contar o que aconteceu?”</div>
+          <div class="sit-context">
+            Sempre TELL + ME/HIM/HER quando tem “me conta / me diz”.
+          </div>
+        </div>
+
+        <div class="situation-card" onclick="speak('What did you say? I didn\\'t hear you.')">
+          <strong>2. Barulho no restaurante 🍽️</strong>
+          <div class="example-en">
+            “<span class='good'>What did you say?</span> I didn’t hear you.”
+          </div>
+          <div class="example-pt">“O que você disse? Eu não te ouvi.”</div>
+          <div class="sit-context">
+            Foco nas palavras → SAY.
+          </div>
+        </div>
+
+        <div class="situation-card" onclick="speak('I need to speak to my boss about this.')">
+          <strong>3. Situação de trabalho formal 💼</strong>
+          <div class="example-en">
+            “I need to <span class='good'>speak to</span> my boss about this.”
+          </div>
+          <div class="example-pt">“Eu preciso falar com o meu chefe sobre isso.”</div>
+          <div class="sit-context">
+            Chefe, reunião → SPEAK to.
+          </div>
+        </div>
+
+        <div class="situation-card" onclick="speak('We need to talk about our relationship.')">
+          <strong>4. DR de casal ❤️</strong>
+          <div class="example-en">
+            “We need to <span class='good'>talk about</span> our relationship.”
+          </div>
+          <div class="example-pt">“A gente precisa conversar sobre o nosso relacionamento.”</div>
+          <div class="sit-context">
+            DR, conversa emocional → TALK about.
+          </div>
+        </div>
+
+        <div class="situation-card" onclick="speak('He told me a secret, but I can\\'t say anything.')">
+          <strong>5. Segredo de amigo 🤫</strong>
+          <div class="example-en">
+            “He <span class='good'>told me</span> a secret, but I can’t <span class='good'>say</span> anything.”
+          </div>
+          <div class="example-pt">“Ele me contou um segredo, mas eu não posso dizer nada.”</div>
+          <div class="sit-context">
+            TELL me a secret = contar; SAY anything = dizer palavras.
+          </div>
+        </div>
+
+        <div class="situation-card" onclick="speak('I don\\'t like to speak in public.')">
+          <strong>6. Medo de falar em público 🎤</strong>
+          <div class="example-en">
+            “I don’t like to <span class='good'>speak in public</span>.”
+          </div>
+          <div class="example-pt">“Eu não gosto de falar em público.”</div>
+          <div class="sit-context">
+            Apresentação, palestra → SPEAK in public.
+          </div>
+        </div>
+
+        <div class="situation-card" onclick="speak('Can we talk later? I\\'m at work now.')">
+          <strong>7. Mensagem rápida no WhatsApp 📱</strong>
+          <div class="example-en">
+            “Can we <span class='good'>talk</span> later? I’m <span class='good'>at work</span> now.”
+          </div>
+          <div class="example-pt">“A gente pode conversar depois? Eu estou no trabalho agora.”</div>
+          <div class="sit-context">
+            Conversa (bate-papo) → TALK, não SPEAK.
+          </div>
+        </div>
+
+        <div class="situation-card" onclick="speak('I speak English at work, but at home I usually speak Portuguese.')">
+          <strong>8. Misturando idiomas casa x trabalho 🏠💼</strong>
+          <div class="example-en">
+            “I <span class='good'>speak</span> English <span class='good'>at work</span>, but <span class='good'>at home</span> I usually <span class='good'>speak</span> Portuguese.”
+          </div>
+          <div class="example-pt">
+            “Eu falo inglês no trabalho, mas em casa eu normalmente falo português.”
+          </div>
+          <div class="sit-context">
+            Idioma = SPEAK + language. Lugares: at work / at home.
+          </div>
+        </div>
+
+        <div class="situation-card" onclick="speak('My teacher said that practice is everything.')">
+          <strong>9. Frase do professor 👩‍🏫</strong>
+          <div class="example-en">
+            “My teacher <span class='good'>said that</span> practice is everything.”
+          </div>
+          <div class="example-pt">“Minha professora disse que prática é tudo.”</div>
+          <div class="sit-context">
+            SAY that + frase.
+          </div>
+        </div>
+
+        <div class="situation-card" onclick="speak('Please don\\'t tell anyone. It\\'s a secret.')">
+          <strong>10. Pedindo silêncio sobre algo 🙊</strong>
+          <div class="example-en">
+            “Please don’t <span class='good'>tell</span> anyone. It’s a secret.”
+          </div>
+          <div class="example-pt">“Por favor, não conte para ninguém. É um segredo.”</div>
+          <div class="sit-context">
+            TELL + anyone = contar para alguém.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- WRITE -->
+    <div class="card-inner" id="tab-write" style="display:none;">
+      <h2 class="section-title">5. Você escreve – reprogramando “dizer/falar/contar” ✍️</h2>
+      <p class="section-sub">
+        Agora é mão na massa. Traduza para inglês escolhendo conscientemente SAY / TELL / SPEAK / TALK.
+      </p>
+
+      <div class="sub-block">
+        <div class="sub-title">5.1. Traduza para inglês (sem olhar o gabarito primeiro)</div>
+        <p class="write-prompt">
+          Escreva em <strong>inglês</strong> aqui embaixo. Use os 4 verbos certo:
+        </p>
+        <ol style="font-size:0.9rem;line-height:1.6;margin-left:18px;margin-bottom:8px;">
+          <li>O que você disse?</li>
+          <li>Ele me contou uma história engraçada.</li>
+          <li>Eu falo inglês em casa e no trabalho.</li>
+          <li>A gente precisa conversar sobre o seu trabalho.</li>
+          <li>Você pode me dizer o seu nome?</li>
+        </ol>
+        <textarea id="write-area" placeholder="Escreva aqui suas frases em inglês usando SAY / TELL / SPEAK / TALK..."></textarea>
+        <div class="char-counter" id="char-counter">0 caracteres</div>
+      </div>
+
+      <div class="sub-block" style="margin-top:10px;">
+        <div class="sub-title">5.2. Gabarito comentado – entenda o porquê 🧠</div>
+        <p style="font-size:0.86rem;line-height:1.6;">
+          Compare com as respostas modelo (podem existir outras versões corretas):<br><br>
+          1️⃣ “O que você disse?” → <span class="good">What did you say?</span>  
+          → foco é na frase: SAY.<br><br>
+          2️⃣ “Ele me contou uma história engraçada.” → <span class="good">He told me a funny story.</span>  
+          → TELL + ME + coisa (funny story).<br><br>
+          3️⃣ “Eu falo inglês em casa e no trabalho.” → <span class="good">I speak English at home and at work.</span>  
+          → idioma = SPEAK English; lugares: at home / at work.<br><br>
+          4️⃣ “A gente precisa conversar sobre o seu trabalho.” → <span class="good">We need to talk about your job.</span>  
+          → conversa/DR → TALK; “sobre” = about.<br><br>
+          5️⃣ “Você pode me dizer o seu nome?” → <span class="good">Can you tell me your name?</span>  
+          → me dizer algo → TELL + ME + coisa (your name).<br><br>
+          Perceba como sempre aparece um padrão claro, não é aleatório.
+        </p>
+      </div>
+    </div>
+
+    <!-- PRACTICE -->
+    <div class="card-inner" id="tab-practice" style="display:none;">
+      <h2 class="section-title">6. Treino de fala – coloque os verbos na boca 🎙️</h2>
+      <p class="section-sub">
+        Agora você precisa FALAR. Use o botão como gatilho mental: 30–60 segundos só treinando SAY / TELL / SPEAK / TALK.
+      </p>
+
+      <div class="sub-block">
+        <div class="sub-title">6.1. Mantra dos quatro verbos (modo repetição)</div>
+        <p class="example-en">
+          “I <span class="good">say</span> something.” • “I <span class="good">tell</span> you something.”<br>
+          “I <span class="good">speak</span> English.” • “I <span class="good">talk</span> to my friends.”
+        </p>
+        <p class="example-pt">
+          Fale isso 5 vezes seguidas. Depois, tente criar versões suas:  
+          “I say…”, “I tell my boss…”, “I speak…”, “I talk to my sister…”
+        </p>
+        <button class="play-btn" onclick="speak('I say something. I tell you something. I speak English. I talk to my friends.')">
+          🔊 Ouvir o mantra
+        </button>
+      </div>
+
+      <div class="sub-block" style="margin-top:10px;">
+        <div class="sub-title">6.2. Transforme sua vida real em frases</div>
+        <p style="font-size:0.9rem;line-height:1.6;">
+          Pense em 4 cenas reais suas hoje ou essa semana:<br>
+          • 1 cena no trabalho 💼 (reunião, falar com chefe, cliente)<br>
+          • 1 cena em casa 🏠 (família, filhos, parceiro/parceira)<br>
+          • 1 cena com amigos 🧑‍🤝‍🧑 (WhatsApp, bar, vídeo-call)<br>
+          • 1 cena contando uma história 😂 (algo engraçado que você sempre conta)<br><br>
+          Para cada cena, crie e FALA em voz alta:<br>
+          • 1 frase com <strong>say</strong><br>
+          • 1 frase com <strong>tell</strong><br>
+          • 1 frase com <strong>speak</strong><br>
+          • 1 frase com <strong>talk</strong><br><br>
+          Não precisa escrever tudo agora – o objetivo aqui é colocar na BOCA, não só no caderno.
+        </p>
+      </div>
+
+      <div class="practice-row">
+        <button class="record-btn" id="record-btn" onclick="toggleRecord()">
+          <span id="record-dot">⏺️</span>
+          <span id="record-text">Marcar momento de prática</span>
+        </button>
+
+        <div class="audio-wrapper">
+          <div id="audio-status" class="no-audio">
+            Nenhum áudio real é gravado aqui – use o botão como compromisso:  
+            enquanto ele estiver vermelho, você fala em voz alta sem parar sobre TELL / TALK / SPEAK / SAY. 🎧
+          </div>
+          <button class="delete-btn" onclick="resetPractice()">Resetar status de prática</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer nav -->
+    <div class="footer-nav">
+      <button class="secondary-btn" onclick="prevTab()">
+        ⬅️ Voltar aba
+      </button>
+      <button class="primary-btn" onclick="nextTab()">
+        Próxima aba ➡️
+      </button>
+    </div>
+
+    <div class="export-bar">
+      <span>📋 Copiar para planilha:</span>
+      <button class="small-btn" onclick="copyToSpreadsheet()">
+        Texto da lição
+      </button>
+      <span>• 📄 PDF: use o botão “Exportar em PDF” no topo.</span>
+    </div>
+
+    <footer class="footer-meta">
+      Criado para o app futurista <span class="brand">NEXTATION</span> – TELL · TALK · SPEAK · SAY do jeito que brasileiro entende. 🚀
+    </footer>
+  </main>
+</div>
+
+<script>
+  const tabOrder = ['overview','why','patterns','situations','write','practice'];
+
+  function showTab(id){
+    document.querySelectorAll('.card-inner').forEach(el=>el.style.display='none');
+    document.getElementById('tab-'+id).style.display='block';
+    document.querySelectorAll('.tab').forEach(t=>{
+      t.classList.remove('active');
+      if(t.dataset.tab===id) t.classList.add('active','completed');
+    });
+  }
+  function nextTab(){
+    const active = document.querySelector('.tab.active');
+    const idx = tabOrder.indexOf(active.dataset.tab);
+    if(idx < tabOrder.length-1){ showTab(tabOrder[idx+1]); }
+  }
+  function prevTab(){
+    const active = document.querySelector('.tab.active');
+    const idx = tabOrder.indexOf(active.dataset.tab);
+    if(idx > 0){ showTab(tabOrder[idx-1]); }
+  }
+
+  function speak(text){
+    if(!('speechSynthesis' in window)) {
+      alert('Seu navegador não suporta áudio (SpeechSynthesis).');
+      return;
+    }
+    window.speechSynthesis.cancel();
+    const utter = new SpeechSynthesisUtterance(text);
+    utter.lang = 'en-US';
+    utter.rate = 0.98;
+    utter.pitch = 1.0;
+    window.speechSynthesis.speak(utter);
+  }
+
+  const writeArea = document.getElementById('write-area');
+  const counterEl = document.getElementById('char-counter');
+  if(writeArea){
+    writeArea.addEventListener('input', ()=>{
+      const len = writeArea.value.length;
+      counterEl.textContent = len + ' caracteres';
+    });
+  }
+
+  let recording = false;
+  function toggleRecord(){
+    recording = !recording;
+    const btn = document.getElementById('record-btn');
+    const txt = document.getElementById('record-text');
+    const dot = document.getElementById('record-dot');
+    const status = document.getElementById('audio-status');
+    if(recording){
+      btn.classList.add('recording');
+      dot.textContent = '🔴';
+      txt.textContent = 'Praticando agora...';
+      status.textContent = 'Momento de prática marcado: fale suas frases com SAY, TELL, SPEAK e TALK em voz alta por pelo menos 30 segundos.';
+    }else{
+      btn.classList.remove('recording');
+      dot.textContent = '⏺️';
+      txt.textContent = 'Marcar momento de prática';
+      status.textContent = 'Prática pausada. Clique de novo quando quiser focar na fala.';
+    }
+  }
+  function resetPractice(){
+    recording = false;
+    const btn = document.getElementById('record-btn');
+    const txt = document.getElementById('record-text');
+    const dot = document.getElementById('record-dot');
+    const status = document.getElementById('audio-status');
+    btn.classList.remove('recording');
+    dot.textContent = '⏺️';
+    txt.textContent = 'Marcar momento de prática';
+    status.textContent = 'Nenhum áudio real é gravado – use o botão como compromisso de prática em voz alta. 🎧';
+  }
+
+  function copyToSpreadsheet(){
+    const text = collectLessonText();
+    navigator.clipboard.writeText(text).then(()=>{
+      alert('Conteúdo copiado! Cole (Ctrl+V) na sua planilha.');
+    }).catch(()=>{
+      alert('Não foi possível copiar automaticamente. Selecione o texto manualmente.');
+    });
+  }
+
+  function collectLessonText(){
+    const blocks = [];
+    document.querySelectorAll('.card-inner').forEach(inner=>{
+      const clone = inner.cloneNode(true);
+      clone.querySelectorAll('button').forEach(b=>b.remove());
+      clone.querySelectorAll('.pill-tag').forEach(p=>p.remove());
+      blocks.push(clone.innerText.trim());
+    });
+    return blocks.join('\n\n-----------------------------\n\n');
+  }
+</script>
+</body>
+</html>
